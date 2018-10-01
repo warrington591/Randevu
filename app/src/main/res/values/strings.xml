@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">RandeVu</string>
+    <string name="action_categories">Categories</string>
+    <string  name="action_start_over">Main Menu</string>
+    <string  name="action_sign_out">Sign Out</string>
+    <string  name="action_profile">Profile</string>
+
+</resources>

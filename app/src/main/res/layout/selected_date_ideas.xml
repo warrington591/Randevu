@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/weatherLabel"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forecast"
+        android:textStyle="bold"
+        android:textSize="20sp"/>
+
+
+
+    <LinearLayout
+        android:gravity="center"
+        android:id="@+id/weatherLL"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/weatherImage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_action_sunshine"/>
+
+        <TextView
+            android:id="@+id/weatherDescTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="20dp"
+            android:text="Clear"/>
+
+        <TextView
+            android:id="@+id/temperatureTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:textSize="30dp"
+            android:textColor="#6ec185"
+            android:text="57"/>
+
+        <ImageView
+            android:id="@+id/degreesImage"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_gravity="center_vertical"
+            android:tint="#6ec185"
+            android:src="@drawable/ic_action_bullet"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/lableRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/weatherLL"
+        android:weightSum ="2"
+        >
+
+        <TextView
+            android:id="@+id/dateIdeas"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:gravity="left"
+            android:text="Date Ideas"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_weight="1"
+            />
+
+        <TextView
+            android:id="@+id/datesCompleted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:layout_marginRight="10dp"
+            android:text="Completed"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/lineSeperator"
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/lableRL"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        >
+
+        <View
+            android:id="@+id/leftLineSeperator"
+            android:layout_width="wrap_content"
+            android:paddingBottom="5dp"
+            android:layout_gravity="left"
+            android:background="@android:color/holo_red_light"
+            android:layout_height="3.2dp"
+            android:layout_weight="1"
+            ></View>
+
+        <View
+            android:id="@+id/rightLineSeperator"
+            android:layout_width="wrap_content"
+            android:paddingBottom="5dp"
+            android:layout_height="3.2dp"
+            android:background="@android:color/white"
+            android:layout_weight="1"
+            ></View>
+
+    </LinearLayout>
+
+
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/lineSeperator"
+        android:id="@+id/dateIdeasRV"
+        android:layout_width="match_parent"
+        android:background="@color/dark_grey"
+        android:layout_above="@+id/addDateIdea"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/diceRandomize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:src="@drawable/dice"
+        app:layout_anchor="@+id/dateIdeasRV"
+        app:layout_anchorGravity="bottom|center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:elevation="18dp"
+        app:fabSize="normal"
+        app:rippleColor="@color/white"
+        app:backgroundTint="@color/lime_green"
+        android:layout_marginBottom="29dp" />
+
+
+
+</RelativeLayout>

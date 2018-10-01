@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view = "http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/activityCard"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        card_view:cardBackgroundColor="@color/colorPrimary"
+        card_view:cardElevation="3dp"
+        card_view:contentPadding="4dp"
+        card_view:cardCornerRadius="12dp"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/activityImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center"
+                    android:tint="@color/white"
+                    android:src="@drawable/bellring" />
+
+                <TextView
+                    android:id="@+id/activityText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@+id/activityImage"
+                    android:gravity="center"
+                    android:text="Fancy"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="3dp"
+                >
+
+                <ImageView
+                    android:id="@+id/checkmark"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/tick2"
+                    android:visibility="invisible"
+                    />
+            </RelativeLayout>
+
+        </FrameLayout>
+
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

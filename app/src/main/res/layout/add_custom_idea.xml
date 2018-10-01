@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/lime_green"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="Your Idea"
+            android:textSize="18sp"
+            android:textAllCaps="true"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/ideaLabel"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Date Idea"/>
+
+    <EditText
+        android:id="@+id/ideaET"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textCursorDrawable="@null"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:inputType="textPersonName"
+        android:textColor="@color/blue"
+        android:backgroundTint="@color/lime_green"
+        />
+
+    <TextView
+        android:id="@+id/weatherLabel"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Weather Most Suitable"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupWeather"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp">
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/lime_green"
+            android:text="Sunny" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/lime_green"
+            android:text="Raining" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/lime_green"
+            android:text="Cloudy" />
+
+    </RadioGroup>
+
+
+    <TextView
+        android:id="@+id/categoryLabel"
+        android:layout_width="match_parent"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Category"/>
+
+    <RadioGroup
+        android:id="@+id/radioGroupCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp">
+
+        <RadioButton
+            android:id="@+id/Fancy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/blue"
+            android:text="Fancy" />
+
+        <RadioButton
+            android:id="@+id/Adventure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/blue"
+            android:text="Adventure" />
+
+        <RadioButton
+            android:id="@+id/Home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/blue"
+            android:text="Home" />
+
+        <RadioButton
+            android:id="@+id/Crafts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/blue"
+            android:text="Crafts" />
+
+        <RadioButton
+            android:id="@+id/Volunteering"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:buttonTint="@color/blue"
+            android:text="Volunteering" />
+    </RadioGroup>
+
+</LinearLayout>
