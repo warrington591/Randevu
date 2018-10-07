@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:2:1-114:12
 MERGED from [me.zhanghai.android.materialprogressbar:library:1.4.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/library-1.4.2.aar/0b7123ce5c5b202574e114ba7aef8e13/AndroidManifest.xml:6:1-16:12
 MERGED from [com.android.support:design:27.1.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/ed2cbfad4181a7bba97dd2d47153a248/AndroidManifest.xml:17:1-22:12
@@ -54,25 +54,25 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.1] /Users/warringtonbloomf
 MERGED from [android.arch.core:runtime:1.1.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/runtime-1.1.1.aar/f790a28a1a9c0bee17111123a3533170/AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/6726debbf6c987d6535f31dbd75770f3/AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.2.aar/85c72338cb0eea1fe97b6d8ceba7dafb/AndroidManifest.xml:2:1-9:12
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
 	package
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:3:5-42
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:3:5-42
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 	android:versionName
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 	android:versionCode
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:1-31:12
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:1-31:12
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 	xmlns:android
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:2:11-69
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:5:5-67
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:5:5-67
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:13:5-67
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:13:5-67
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.1.aar/092d7c8f10ec8dedf34e32ac5c0b1431/AndroidManifest.xml:22:5-67
@@ -86,13 +86,13 @@ MERGED from [com.google.firebase:firebase-iid:16.0.0] /Users/warringtonbloomfiel
 MERGED from [com.google.firebase:firebase-database-connection:16.0.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-database-connection-16.0.1.aar/02e00a568b2be849bdfb6eb4020e6401/AndroidManifest.xml:8:5-67
 MERGED from [com.google.firebase:firebase-database-connection:16.0.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-database-connection-16.0.1.aar/02e00a568b2be849bdfb6eb4020e6401/AndroidManifest.xml:8:5-67
 	android:name
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:5:22-64
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:5:22-64
 uses-permission#android.permission.ACCESS_COARSE_LOCATION
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:6:5-80
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:6:5-80
 	android:name
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:6:22-78
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:6:22-78
 application
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:9:5-29:19
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:9:5-29:19
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:15:5-112:19
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:15:5-112:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/constraint-layout-1.1.2.aar/e467835bb19130a019f77fbbcc74e481/AndroidManifest.xml:9:5-20
@@ -140,45 +140,45 @@ MERGED from [com.github.bumptech.glide:gifdecoder:4.6.1] /Users/warringtonbloomf
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.2.aar/85c72338cb0eea1fe97b6d8ceba7dafb/AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.2.aar/85c72338cb0eea1fe97b6d8ceba7dafb/AndroidManifest.xml:7:5-20
 	android:supportsRtl
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:15:9-35
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:15:9-35
 	android:label
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:13:9-41
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:13:9-41
 	android:hardwareAccelerated
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:16:9-44
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:16:9-44
 	android:roundIcon
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:14:9-54
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:14:9-54
 	android:largeHeap
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:17:9-33
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:17:9-33
 	android:icon
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:12:9-43
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:12:9-43
 	android:allowBackup
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:11:9-35
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:11:9-35
 	android:theme
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:18:9-40
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:18:9-40
 	android:name
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:10:9-59
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:10:9-59
 activity#xyz.warringtons.daterandevu.MainActivity
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:19:9-28:20
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:19:9-28:20
 	android:label
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:21:13-45
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:21:13-45
 	android:theme
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:22:13-56
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:22:13-56
 	android:name
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:20:13-41
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:20:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:23:13-27:29
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:23:13-27:29
 action#android.intent.action.MAIN
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:24:17-69
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:24:17-69
 	android:name
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:24:25-66
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:24:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:26:17-77
+ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:26:17-77
 	android:name
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml:26:27-74
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml:26:27-74
 uses-sdk
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:8:5-10:41
 MERGED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:8:5-10:41
 MERGED from [me.zhanghai.android.materialprogressbar:library:1.4.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/library-1.4.2.aar/0b7123ce5c5b202574e114ba7aef8e13/AndroidManifest.xml:12:5-14:41
@@ -279,16 +279,16 @@ MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/warringtonbloomfield
 MERGED from [android.arch.lifecycle:viewmodel:1.1.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/viewmodel-1.1.1.aar/6726debbf6c987d6535f31dbd75770f3/AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.2.aar/85c72338cb0eea1fe97b6d8ceba7dafb/AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-measurement-base:16.0.2] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-measurement-base-16.0.2.aar/85c72338cb0eea1fe97b6d8ceba7dafb/AndroidManifest.xml:5:5-44
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		ADDED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
-		INJECTED from /Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		ADDED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
+		INJECTED from /Users/warringtonbloomfield/Randevu/app/src/main/AndroidManifest.xml
 uses-permission#android.permission.ACCESS_NETWORK_STATE
 ADDED from [com.firebaseui:firebase-ui-auth:4.1.0] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/AndroidManifest.xml:12:5-79
 MERGED from [com.google.firebase:firebase-measurement-connector-impl:17.0.1] /Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-measurement-connector-impl-17.0.1.aar/092d7c8f10ec8dedf34e32ac5c0b1431/AndroidManifest.xml:23:5-79

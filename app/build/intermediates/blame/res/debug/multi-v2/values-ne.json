@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml",
+            "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ne/values-ne.xml",
             "map": [
                 {
                     "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-base-15.0.1.aar/17fb3bf732ccdd7818398f1b442777bf/res/values-ne/values.xml",

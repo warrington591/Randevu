@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+
+        <RelativeLayout
+            android:id="@+id/topRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            >
+
+            <!--Logo Relative Layout-->
+            <RelativeLayout
+                android:id="@+id/imageRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <!--Logo-->
+                <ImageView
+                    android:id="@+id/logoIV"
+                    android:layout_width="100dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/logo"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/loginFormRL"
+                android:layout_width="match_parent"
+                android:layout_below="@+id/imageRL"
+                android:layout_marginTop="20dp"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/emailET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    />
+
+                <EditText
+                    android:id="@+id/passwordET"
+                    android:layout_below="@+id/emailET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    />
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+        <!--Login Buttons RL-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_below="@+id/topRL"
+            android:layout_marginTop="20dp"
+            >
+
+            <Button
+                android:id="@+id/register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register"/>
+
+            <Button
+                android:id="@+id/forgotPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/register"
+                android:background="@null"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:text="Forgot your password?" />
+
+
+            <Button
+                android:id="@+id/logIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/forgotPassword"
+                android:background="@null"
+                android:layout_marginTop="20dp"
+                android:textAllCaps="false"
+                android:text="Already registered. Log me in!" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/logIn"
+                android:gravity="center_horizontal"
+                >
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_horizontal"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>
+

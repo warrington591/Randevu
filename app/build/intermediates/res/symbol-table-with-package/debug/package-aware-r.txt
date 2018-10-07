@@ -599,6 +599,8 @@ color switch_thumb_normal_material_dark
 color switch_thumb_normal_material_light
 color tooltip_background_dark
 color tooltip_background_light
+color welcome_background
+color welcome_highlights
 color white
 color yelp_rating
 dimen abc_action_bar_content_inset_material
@@ -676,6 +678,7 @@ dimen abc_text_size_subhead_material
 dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
+dimen activity_horizontal_margin
 dimen browser_actions_context_menu_max_width
 dimen browser_actions_context_menu_min_padding
 dimen cardview_compat_inset_shadow
@@ -751,6 +754,7 @@ dimen hint_pressed_alpha_material_light
 dimen item_touch_helper_max_drag_scroll_per_frame
 dimen item_touch_helper_swipe_escape_max_velocity
 dimen item_touch_helper_swipe_escape_velocity
+dimen logo_w_h
 dimen notification_action_icon_size
 dimen notification_action_text_size
 dimen notification_big_circle_margin
@@ -921,6 +925,7 @@ drawable ic_add_36
 drawable ic_current
 drawable jamaica
 drawable la
+drawable logo
 drawable navigation_empty_icon
 drawable navigation_header_image
 drawable newyork
@@ -1054,6 +1059,7 @@ id dynamic
 id edit_phone_number
 id edit_query
 id email
+id emailET
 id email_button
 id email_footer_tos_and_pp_text
 id email_layout
@@ -1070,6 +1076,7 @@ id fill_horizontal
 id fill_vertical
 id fixed
 id forever
+id forgotPassword
 id fragment_phone
 id fragment_register_email
 id ghost_view
@@ -1089,6 +1096,7 @@ id ideaInfo
 id ideaLabel
 id ifRoom
 id image
+id imageRL
 id info
 id input_email
 id input_name
@@ -1115,7 +1123,10 @@ id locationImage
 id locationLabel
 id locationRecyclerView
 id locationText
+id logIn
+id loginFormRL
 id logo
+id logoIV
 id mainContent
 id main_tos_and_pp
 id masked
@@ -1140,6 +1151,7 @@ id parent
 id parentPanel
 id parent_matrix
 id password
+id passwordET
 id password_layout
 id percent
 id phone_button
@@ -1147,6 +1159,7 @@ id phone_layout
 id phone_number
 id pin
 id profile_layout
+id progressBar
 id progress_circular
 id progress_horizontal
 id radio
@@ -1155,6 +1168,7 @@ id radioButton3
 id radioButton4
 id radioGroupCategory
 id radioGroupWeather
+id register
 id resend_barrier
 id resend_code
 id right
@@ -1223,6 +1237,7 @@ id title_template
 id toolbar
 id top
 id topPanel
+id topRL
 id top_progress_bar
 id touch_outside
 id transition_current_scene
@@ -1364,6 +1379,7 @@ layout signup_screen
 layout start_dating
 layout support_simple_spinner_dropdown_item
 layout toolbar
+layout welcome
 layout yelp_dialogbox
 layout yelp_row
 menu menu_main
@@ -1401,11 +1417,14 @@ string abc_shareactionprovider_share_with_application
 string abc_toolbar_collapse_description
 string action_categories
 string action_profile
+string action_sign_in_short
 string action_sign_out
 string action_start_over
 string app_name
 string appbar_scrolling_view_behavior
 string bottom_sheet_behavior
+string btn_forgot_password
+string btn_link_to_login
 string character_counter_pattern
 string com_crashlytics_android_build_id
 string common_google_play_services_enable_button
@@ -1427,6 +1446,7 @@ string common_open_on_phone
 string common_signin_button_text
 string common_signin_button_text_long
 string default_web_client_id
+string email
 string facebook_application_id
 string facebook_login_protocol_scheme
 string firebase_database_url
@@ -1504,6 +1524,7 @@ string google_api_key
 string google_app_id
 string google_crash_reporting_api_key
 string google_storage_bucket
+string hint_password
 string password_toggle_content_description
 string path_password_eye
 string path_password_eye_mask_strike_through

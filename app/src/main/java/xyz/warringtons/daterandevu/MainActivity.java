@@ -40,6 +40,7 @@ import xyz.warringtons.daterandevu.Fragments.InitialScreen;
 import xyz.warringtons.daterandevu.Fragments.LocationFragment;
 import xyz.warringtons.daterandevu.Fragments.ProfileFragment;
 import xyz.warringtons.daterandevu.Fragments.SelectedIdeasFragment;
+import xyz.warringtons.daterandevu.Fragments.WelcomeFragment;
 import xyz.warringtons.daterandevu.Modules.Activities;
 import xyz.warringtons.daterandevu.Modules.ActivitiesDao;
 import xyz.warringtons.daterandevu.Modules.User;
@@ -109,9 +110,18 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             moveToLocationsFragment();
         } else {
-            signIn();
+
+            navigateToWelcome();
+
+//            signIn();
         }
 
+    }
+
+    private void navigateToWelcome() {
+        WelcomeFragment fragment = new WelcomeFragment();
+        fragmentTransaction.replace(R.id.mainContent, fragment);
+        fragmentTransaction.commit();
     }
 
     private void navigateToSelectionScreen() {
@@ -484,7 +494,9 @@ public class MainActivity extends AppCompatActivity {
                         .signOut(this)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             public void onComplete(@NonNull Task<Void> task) {
-                                signIn();
+                                Intent intent = getIntent();
+                                finish();
+                                startActivity(intent);
                             }
                         });
 

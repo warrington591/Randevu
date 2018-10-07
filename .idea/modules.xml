@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/DateRandevu.iml" filepath="$PROJECT_DIR$/DateRandevu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Randevu.iml" filepath="$PROJECT_DIR$/Randevu.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/greendao-generator/greendao-generator.iml" filepath="$PROJECT_DIR$/greendao-generator/greendao-generator.iml" />
     </modules>

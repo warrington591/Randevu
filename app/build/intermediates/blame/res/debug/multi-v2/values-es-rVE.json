@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rVE/values-es-rVE.xml",
+            "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-es-rVE/values-es-rVE.xml",
             "map": [
                 {
                     "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/firebase-ui-auth-4.1.0.aar/04fbb4eaccf858f613328164db5b04b7/res/values-es-rVE/values-es-rVE.xml",

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te/values-te.xml",
+            "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te/values-te.xml",
             "map": [
                 {
                     "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/bac7b57d1e23a3882b421b5b72990c10/res/values-te/values-te.xml",
