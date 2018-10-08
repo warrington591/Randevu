@@ -23,6 +23,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,6 +93,9 @@ public class SelectedIdeasFragment extends BaseFragment {
     @BindView(R.id.rightLineSeperator)
     View rightLine;
 
+    @BindView(R.id.noDatesCompleted)
+    RelativeLayout noDatesCompleted;
+
 
     private List<Activities> allActivites, firebaseActivites;
     private List<Activities> incompleteActivites;
@@ -114,6 +118,7 @@ public class SelectedIdeasFragment extends BaseFragment {
     private String categoryId;
     private Boolean showCompleted= false;
     private Handler mainHandler;
+    private int amountOfActivities;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -311,8 +316,17 @@ public class SelectedIdeasFragment extends BaseFragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 allActivites = new ArrayList<>();
                 collectAllActivities(dataSnapshot);
-                dateIdeasRV.setAdapter(dateAdapter);
-                initSwipe();
+
+                if(amountOfActivities!=0){
+                    dateIdeasRV.setVisibility(View.VISIBLE);
+                    noDatesCompleted.setVisibility(View.GONE);
+                    dateIdeasRV.setAdapter(dateAdapter);
+                    initSwipe();
+                }else{
+                    dateIdeasRV.setVisibility(View.GONE);
+                    noDatesCompleted.setVisibility(View.VISIBLE);
+                }
+
             }
 
             @Override
@@ -335,6 +349,8 @@ public class SelectedIdeasFragment extends BaseFragment {
                 allActivites.add(currentActivity);
             }
         }
+
+        amountOfActivities = allActivites.size();
 
         dateAdapter = new SelectedIdeasAdapter(allActivites, new SelectedCallback() {
 
