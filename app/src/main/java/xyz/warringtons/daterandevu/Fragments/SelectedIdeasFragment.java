@@ -84,6 +84,12 @@ public class SelectedIdeasFragment extends BaseFragment {
     @BindView(R.id.dateIdeas)
     TextView dateIdeas;
 
+    @BindView(R.id.dateIdeasRL)
+    RelativeLayout dateIdeasRL;
+
+    @BindView(R.id.datesCompletedRL)
+    RelativeLayout datesCompletedRL;
+
     @BindView(R.id.datesCompleted)
     TextView dateCompleted;
 
@@ -139,7 +145,7 @@ public class SelectedIdeasFragment extends BaseFragment {
         dateIdeasRV.setLayoutManager(layoutManager);
         initiateAdapter();
 
-        dateIdeas.setOnClickListener(new View.OnClickListener() {
+        dateIdeasRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 leftLine.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected_color));
@@ -150,7 +156,7 @@ public class SelectedIdeasFragment extends BaseFragment {
         });
 
 
-        dateCompleted.setOnClickListener(new View.OnClickListener() {
+        datesCompletedRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rightLine.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected_color));
