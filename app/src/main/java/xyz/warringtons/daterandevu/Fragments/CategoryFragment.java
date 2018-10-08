@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,7 +47,8 @@ public class CategoryFragment extends BaseFragment {
     @BindView(R.id.beginDating)
     Button beginDating;
 
-
+    @BindView(R.id.categoryProgressBar)
+    ProgressBar progressBar;
 
     List<String> activityTypes = new ArrayList<>();
     List<Category> categoriesListed;
@@ -118,12 +121,40 @@ public class CategoryFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
 
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    DateGeneratorFragment fragment = new DateGeneratorFragment();
-                    ft.replace(R.id.mainContent,  fragment);
-                    ft.addToBackStack("DateGeneratorFragment");
-                    ft.commit();
+                    //Search through categories for a 1
 
+
+                    ValueEventListener eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            String search = "1";
+                            Boolean found = false;
+                            for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                                int foundValue = ds.child("value").getValue(Integer.class);
+
+                                if(foundValue==1){
+                                    found = true;
+                                    break;
+                                }
+                            }
+
+                            if(found){
+                                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                                DateGeneratorFragment fragment = new DateGeneratorFragment();
+                                ft.replace(R.id.mainContent,  fragment);
+                                ft.addToBackStack("DateGeneratorFragment");
+                                ft.commit();
+                            }else{
+                                Toast.makeText(Randevu.getContext(), "Please select a category", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                    };
+
+
+                    categoriesRef.addListenerForSingleValueEvent(eventListener);
                 }
             });
         }
@@ -149,6 +180,7 @@ public class CategoryFragment extends BaseFragment {
                 categoriesRef.child(key).setValue(category);
                 String name = category.getName();
 
+                //Todo: Remove in favor of using firebase for categories
                 //add to shared preferences
                 switch (name){
                     case "Casual":
@@ -179,6 +211,7 @@ public class CategoryFragment extends BaseFragment {
             }
         });
         activitesRV.setAdapter(activitiesAdapter);
+        progressBar.setVisibility(View.GONE);
     }
 
     private void setCategorySelection(Category category, boolean status) {
