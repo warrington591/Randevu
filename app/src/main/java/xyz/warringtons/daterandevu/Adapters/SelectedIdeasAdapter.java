@@ -28,6 +28,7 @@ import xyz.warringtons.daterandevu.Interfaces.YelpCallback;
 import xyz.warringtons.daterandevu.Modules.Activities;
 import xyz.warringtons.daterandevu.R;
 import xyz.warringtons.daterandevu.Randevu;
+import xyz.warringtons.daterandevu.Utility.RoundedCornersTransformation;
 import xyz.warringtons.daterandevu.Utility.YelpClient;
 
 /**
@@ -39,6 +40,11 @@ public class SelectedIdeasAdapter extends RecyclerView.Adapter<SelectedIdeasAdap
 
     List<Activities> list = new ArrayList<>();
     SelectedCallback mCallback;
+
+    public static int sCorner = 15;
+    public static int sMargin = 2;
+    public static int sBorder = 5;
+    public static String sColor = "#ffffff";
 
     public SelectedIdeasAdapter(List<Activities> list, SelectedCallback callback) {
         this.list = list;
@@ -63,7 +69,14 @@ public class SelectedIdeasAdapter extends RecyclerView.Adapter<SelectedIdeasAdap
 
 
         if(currentActivity.getPicDatabaseId()!=null && !currentActivity.getPicDatabaseId().equals("")){
-            Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(holder.dateIdeaImage);
+//            Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(holder.dateIdeaImage);
+
+            Glide.with(Randevu.getContext())
+                    .load(currentActivity.getPicDatabaseId())
+                    .apply(RequestOptions.bitmapTransform(
+                            new RoundedCornersTransformation(Randevu.getContext(), sCorner, sMargin, sColor, sBorder)))
+                    .into(holder.dateIdeaImage);
+
         }else{
             Glide.with(Randevu.getContext()).load(R.drawable.date_idea_holder).apply(RequestOptions.circleCropTransform()).into(holder.dateIdeaImage);
         }
