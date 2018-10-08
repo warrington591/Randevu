@@ -146,17 +146,17 @@ public class WelcomeFragment extends BaseFragment {
                     if(auth!=null){
                         FirebaseUser firebaseUser = auth.getCurrentUser();
                         String username = firebaseUser.getDisplayName();
-                        if(username== null){
-                            username = "Sam";
-                        }
                         final String userId = firebaseUser.getUid();
                         String email = firebaseUser.getEmail();
+                        if(username== null){
+                            String[] emailSplit = email.split("@");
+                            username = emailSplit[0];
+                        }
                         final RandevuUser randevuUser = new RandevuUser(username, email);
 
                         mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
                         mDatabaseUsers.child(userId).setValue(randevuUser);
-                         specificUser = mDatabaseUsers.child(userId);
-
+                        specificUser = mDatabaseUsers.child(userId);
                         specificUser.child("activities").setValue("0");
                         specificUser.child("categories").setValue("0");
                         mDatabaseActivities = specificUser.child("activities");
@@ -164,13 +164,13 @@ public class WelcomeFragment extends BaseFragment {
                         specificUser.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                    setUpActivities();
-                                    categoriesRef.push().setValue(new Category("Casual", 0));
-                                    categoriesRef.push().setValue(new Category("Adventure", 0));
-                                    categoriesRef.push().setValue(new Category("Home", 0));
-                                    categoriesRef.push().setValue(new Category("Crafts", 0));
-                                    categoriesRef.push().setValue(new Category("Fancy", 0));
-                                    categoriesRef.push().setValue(new Category("Volunteering", 0));
+                                setUpActivities();
+                                categoriesRef.push().setValue(new Category("Casual", 0));
+                                categoriesRef.push().setValue(new Category("Adventure", 0));
+                                categoriesRef.push().setValue(new Category("Home", 0));
+                                categoriesRef.push().setValue(new Category("Crafts", 0));
+                                categoriesRef.push().setValue(new Category("Fancy", 0));
+                                categoriesRef.push().setValue(new Category("Volunteering", 0));
                                 saveToLocalStorage();
 
                             }
