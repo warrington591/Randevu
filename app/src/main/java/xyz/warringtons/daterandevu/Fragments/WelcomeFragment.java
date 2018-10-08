@@ -25,6 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.Arrays;
@@ -66,6 +67,7 @@ public class WelcomeFragment extends BaseFragment {
     private DatabaseReference mDatabaseActivities;
     private FragmentTransaction fragmentTransaction;
     private LocationFragment locationFragment;
+    private DatabaseReference specificUser;
 
 
     @Override
@@ -123,7 +125,7 @@ public class WelcomeFragment extends BaseFragment {
 
         progressBar.setVisibility(View.VISIBLE);
 
-
+        //Creates a user
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -144,56 +146,33 @@ public class WelcomeFragment extends BaseFragment {
                     if(auth!=null){
                         FirebaseUser firebaseUser = auth.getCurrentUser();
                         String username = firebaseUser.getDisplayName();
+                        if(username== null){
+                            username = "Sam";
+                        }
                         final String userId = firebaseUser.getUid();
                         String email = firebaseUser.getEmail();
                         final RandevuUser randevuUser = new RandevuUser(username, email);
 
-                        DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users");
+                        mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
+                        mDatabaseUsers.child(userId).setValue(randevuUser);
+                         specificUser = mDatabaseUsers.child(userId);
 
-                        //Checks if account already exists
-                        databaseForUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot snapshot) {
-                                if(snapshot.exists()){
-                                    Log.d("AlreadyExists", "onDataChange: ");
-                                }else{
-                                    //creates an instance of the new user
-                                    mDatabaseUsers.child(userId).setValue(randevuUser);
-                                }
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
-
-                        categoriesRef = databaseForUser.child(userId).child("categories");
-                        mDatabaseActivities = mDatabaseUsers.child(userId).child("activities");
-                        mDatabaseUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                        specificUser.child("activities").setValue("0");
+                        specificUser.child("categories").setValue("0");
+                        mDatabaseActivities = specificUser.child("activities");
+                        categoriesRef = specificUser.child("categories");
+                        specificUser.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                if (dataSnapshot.child("activities").exists()) {
-                                    Log.d("calledTag", "activities child exits");
-                                }else {
-                                    Log.d("calledTag", "activities doesn't exits");
                                     setUpActivities();
-                                    categoriesRef.setValue("categories");
                                     categoriesRef.push().setValue(new Category("Casual", 0));
                                     categoriesRef.push().setValue(new Category("Adventure", 0));
                                     categoriesRef.push().setValue(new Category("Home", 0));
                                     categoriesRef.push().setValue(new Category("Crafts", 0));
                                     categoriesRef.push().setValue(new Category("Fancy", 0));
                                     categoriesRef.push().setValue(new Category("Volunteering", 0));
-                                    Randevu.getEditor().putString("location","");
-                                    Randevu.getEditor().putBoolean("Casual",false);
-                                    Randevu.getEditor().putBoolean("Adventure", false);
-                                    Randevu.getEditor().putBoolean("Home", false);
-                                    Randevu.getEditor().putBoolean("Crafts", false);
-                                    Randevu.getEditor().putBoolean("Fancy", false);
-                                    Randevu.getEditor().putBoolean("Volunteering", false);
-                                    Randevu.getEditor().apply();
-                                }
+                                saveToLocalStorage();
+
                             }
 
                             @Override
@@ -209,6 +188,17 @@ public class WelcomeFragment extends BaseFragment {
             }
         });
 
+    }
+
+    private void saveToLocalStorage() {
+        Randevu.getEditor().putString("location","");
+        Randevu.getEditor().putBoolean("Casual",false);
+        Randevu.getEditor().putBoolean("Adventure", false);
+        Randevu.getEditor().putBoolean("Home", false);
+        Randevu.getEditor().putBoolean("Crafts", false);
+        Randevu.getEditor().putBoolean("Fancy", false);
+        Randevu.getEditor().putBoolean("Volunteering", false);
+        Randevu.getEditor().apply();
     }
 
 
@@ -270,14 +260,7 @@ public class WelcomeFragment extends BaseFragment {
                                 categoriesRef.push().setValue(new Category("Crafts", 0));
                                 categoriesRef.push().setValue(new Category("Fancy", 0));
                                 categoriesRef.push().setValue(new Category("Volunteering", 0));
-                                Randevu.getEditor().putString("location", "");
-                                Randevu.getEditor().putBoolean("Casual", false);
-                                Randevu.getEditor().putBoolean("Adventure", false);
-                                Randevu.getEditor().putBoolean("Home", false);
-                                Randevu.getEditor().putBoolean("Crafts", false);
-                                Randevu.getEditor().putBoolean("Fancy", false);
-                                Randevu.getEditor().putBoolean("Volunteering", false);
-                                Randevu.getEditor().apply();
+                                saveToLocalStorage();
                             }
                         }
 
@@ -308,12 +291,7 @@ public class WelcomeFragment extends BaseFragment {
         try {
             fragmentTransaction.replace(R.id.mainContent, locationFragment);
             fragmentTransaction.commit();
-        }catch (Exception ex){
-//            Log.d("Testing fragment", "moveToLocationsFragment: ");
-//
-//            Intent i = new Intent(this, MainActivity.class);
-//            startActivity(i);
-        }
+        }catch (Exception ex){ }
     }
 
     private void setUpActivities() {

@@ -78,13 +78,16 @@ public class LocationFragment extends BaseFragment {
             @Override
             public void perform(String value) {
 
+                //Sets location in phone storage
                 Randevu.getEditor().putString("location", value);
                 Randevu.getEditor().apply();
+
 
                 WeatherHttpClient.makeRequest(value);
 
                 weather = Randevu.getDaoSession().getWeatherDao().load((long) 1);
 
+                //Changes to main fragment to choose the users categories
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 CategoryFragment fragment = new CategoryFragment();
                 ft.replace(R.id.mainContent,  fragment);
