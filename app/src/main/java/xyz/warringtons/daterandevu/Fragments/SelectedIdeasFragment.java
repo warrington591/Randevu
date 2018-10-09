@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +40,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -358,11 +360,44 @@ public class SelectedIdeasFragment extends BaseFragment {
 
         amountOfActivities = allActivites.size();
 
-        dateAdapter = new SelectedIdeasAdapter(allActivites, new SelectedCallback() {
+        dateAdapter = new SelectedIdeasAdapter(allActivites, getActivity().getLayoutInflater(), new SelectedCallback() {
 
             @Override
             public void perform(final Activities currentActivity) {
-                setCompleteOrNot(currentActivity);
+//                setCompleteOrNot(currentActivity);
+
+                //Show detailed information
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                String userId = firebaseUser.getUid();
+                DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users").child(userId);
+                final DatabaseReference activitiesRef = databaseForUser.child("activities");
+
+                mBuilder = new AlertDialog.Builder(getActivity());
+                final View mView = getLayoutInflater(null).inflate(R.layout.date_idea_info, null);
+
+                final TextView dateText = (TextView) mView.findViewById(R.id.dialogIdeaText);
+                final ImageView dateImage = (ImageView) mView.findViewById(R.id.dialogIdeaImage);
+
+                dateText.setText(currentActivity.getActivityName());
+                Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(dateImage);
+
+
+                mBuilder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+//                        saveIdea(dialog, ideaET, radioGroupWeather, mView, radioGroupCategory);
+                    }
+                });
+
+                mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                    }
+                });
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
             }
 
             @Override

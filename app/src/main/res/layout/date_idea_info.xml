@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/colorPrimary"
+        >
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/dateImageRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/dialogIdeaImage"
+            android:layout_width="250dp"
+            android:layout_height="250dp"
+            android:paddingTop="30dp"
+            android:src="@drawable/logo"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/dateDetailsRl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateImageRl"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        >
+
+        <TextView
+            android:id="@+id/dialogIdeaText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date Name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/navOptionsLl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dateDetailsRl"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorPrimaryDark"
+        android:layout_marginBottom="50dp"
+        >
+
+        <!--Maps-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/mapsIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/maps_logo"
+                android:tint="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/mapsText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mapsIcon"
+                android:text="Maps"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="5dp"
+                />
+
+        </RelativeLayout>
+
+        <!--Yelp-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/yepIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/yelp_logo"
+                android:tint="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/yelpText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/yepIcon"
+                android:text="Yelp"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="5dp"
+                />
+
+        </RelativeLayout>
+
+
+        <!--Groupon-->
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/grouponIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/groupon_logo"
+                android:tint="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/grouponText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/grouponIcon"
+                android:text="Groupon"
+                android:textSize="15dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_centerInParent="true"
+                android:layout_marginBottom="5dp"
+                />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

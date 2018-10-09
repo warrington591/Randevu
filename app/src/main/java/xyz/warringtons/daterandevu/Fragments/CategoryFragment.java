@@ -121,13 +121,9 @@ public class CategoryFragment extends BaseFragment {
                 @Override
                 public void onClick(View v) {
 
-                    //Search through categories for a 1
-
-
                     ValueEventListener eventListener = new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            String search = "1";
                             Boolean found = false;
                             for(DataSnapshot ds : dataSnapshot.getChildren()) {
                                 int foundValue = ds.child("value").getValue(Integer.class);
