@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -60,6 +61,7 @@ public class LocationFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
         mainActivity = (MainActivity) getActivity();
         mainActivity.drawableDisable();
