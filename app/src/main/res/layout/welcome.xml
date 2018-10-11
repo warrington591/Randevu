@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#5F36A9"
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,6 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:layout_marginTop="40dp"
             >
 
             <!--Logo Relative Layout-->
@@ -45,17 +48,23 @@
 
                 <EditText
                     android:id="@+id/emailET"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Email"
+                    android:textColor="#ffffff"
+                    android:textColorHint="#ffffff"
+                    android:layout_marginBottom="10dp"
                     />
 
                 <EditText
                     android:id="@+id/passwordET"
                     android:layout_below="@+id/emailET"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:password="true"
                     android:hint="Password"
+                    android:textColor="#ffffff"
+                    android:textColorHint="#ffffff"
                     />
 
             </RelativeLayout>
@@ -78,6 +87,7 @@
                 android:id="@+id/register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:text="Register"/>
 
             <Button
@@ -88,6 +98,7 @@
                 android:background="@null"
                 android:layout_marginTop="20dp"
                 android:textAllCaps="false"
+                android:textColor="#ffffff"
                 android:text="Forgot your password?" />
 
 
@@ -99,6 +110,7 @@
                 android:background="@null"
                 android:layout_marginTop="20dp"
                 android:textAllCaps="false"
+                android:textColor="#ffffff"
                 android:text="Already registered. Log me in!" />
 
 
