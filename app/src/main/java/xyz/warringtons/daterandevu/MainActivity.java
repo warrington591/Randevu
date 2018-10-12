@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
                             if(snapshot.exists()){
                                 Log.d("AlreadyExists", "onDataChange: ");
                             }else{
-                                //creates an instance of the new userwarren
+                                //creates an instance of the new user
                                 mDatabaseUsers.child(userId).setValue(randevuUser);
                             }
                         }

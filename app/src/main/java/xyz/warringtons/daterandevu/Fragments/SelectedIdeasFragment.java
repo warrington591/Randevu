@@ -3,6 +3,7 @@ package xyz.warringtons.daterandevu.Fragments;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -127,6 +128,7 @@ public class SelectedIdeasFragment extends BaseFragment {
     private Boolean showCompleted= false;
     private Handler mainHandler;
     private int amountOfActivities;
+    private DatabaseReference activitiesRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -370,11 +372,10 @@ public class SelectedIdeasFragment extends BaseFragment {
                 FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                 String userId = firebaseUser.getUid();
                 DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users").child(userId);
-                final DatabaseReference activitiesRef = databaseForUser.child("activities");
+                activitiesRef = databaseForUser.child("activities");
 
                 mBuilder = new AlertDialog.Builder(getActivity());
                 final View mView = getLayoutInflater(null).inflate(R.layout.date_idea_info, null);
-
                 final TextView dateText = (TextView) mView.findViewById(R.id.dialogIdeaText);
                 final ImageView dateImage = (ImageView) mView.findViewById(R.id.dialogIdeaImage);
 
@@ -384,13 +385,15 @@ public class SelectedIdeasFragment extends BaseFragment {
 
                 mBuilder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+
+                        activitiesRef.child(currentActivity.getFirebaseId()).child("complete").setValue(true);
                         dialog.dismiss();
-//                        saveIdea(dialog, ideaET, radioGroupWeather, mView, radioGroupCategory);
                     }
                 });
 
-                mBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                mBuilder.setNegativeButton("No Thanks", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        activitiesRef.child(currentActivity.getFirebaseId()).child("complete").setValue(false);
                         dialog.dismiss();
                     }
                 });
@@ -398,6 +401,7 @@ public class SelectedIdeasFragment extends BaseFragment {
                 mBuilder.setView(mView);
                 AlertDialog dialog = mBuilder.create();
                 dialog.show();
+                setUpDialogStyles(dialog);
             }
 
             @Override
@@ -432,6 +436,14 @@ public class SelectedIdeasFragment extends BaseFragment {
             }
 
         });
+    }
+
+    private void setUpDialogStyles(AlertDialog dialog) {
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        positiveButton.setTextColor(Color.parseColor("#FF0B8B42"));
+        positiveButton.setPadding(5, 0, 5, 0);
     }
 
     private void setCompleteOrNot(final Activities currentActivity) {
