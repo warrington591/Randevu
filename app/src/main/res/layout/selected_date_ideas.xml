@@ -144,6 +144,7 @@
         android:gravity="center">
 
         <TextView
+            android:id="@+id/textWhenEmpty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="No Dates Completed"
@@ -153,13 +154,29 @@
     </RelativeLayout>
 
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/selectedIdeasProgressBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:indeterminateDrawable = "@drawable/progress_style"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/dateIdeasRV"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/addDateIdea"
         android:layout_below="@+id/lineSeperator"
-        android:background="@color/dark_grey"></android.support.v7.widget.RecyclerView>
+        android:background="@color/dark_grey">
+
+    </android.support.v7.widget.RecyclerView>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/diceRandomize"

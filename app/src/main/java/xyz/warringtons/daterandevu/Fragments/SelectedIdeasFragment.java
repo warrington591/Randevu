@@ -1,5 +1,6 @@
 package xyz.warringtons.daterandevu.Fragments;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -22,6 +24,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -105,6 +108,12 @@ public class SelectedIdeasFragment extends BaseFragment {
     @BindView(R.id.noDatesCompleted)
     RelativeLayout noDatesCompleted;
 
+    @BindView(R.id.selectedIdeasProgressBar)
+    ProgressBar selectedProgressBar;
+
+    @BindView(R.id.textWhenEmpty)
+    TextView textWhenNoActivities;
+
 
     private List<Activities> allActivites, firebaseActivites;
     private List<Activities> incompleteActivites;
@@ -140,6 +149,11 @@ public class SelectedIdeasFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        //Removes the back button in toolbar
+        android.support.v7.app.ActionBar actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(false);
+
+        //Updates the weather in the display
         final Weather weather = Randevu.getDaoSession().getWeatherDao().load((long) 1);
         if(weather!=null){
             updateWeather(weather);
@@ -331,12 +345,14 @@ public class SelectedIdeasFragment extends BaseFragment {
                     dateIdeasRV.setVisibility(View.VISIBLE);
                     noDatesCompleted.setVisibility(View.GONE);
                     dateIdeasRV.setAdapter(dateAdapter);
+                    selectedProgressBar.setVisibility(View.GONE);
                     initSwipe();
                 }else{
                     dateIdeasRV.setVisibility(View.GONE);
                     noDatesCompleted.setVisibility(View.VISIBLE);
+                    selectedProgressBar.setVisibility(View.GONE);
+                    setTextForEmptyState();
                 }
-
             }
 
             @Override
@@ -347,6 +363,17 @@ public class SelectedIdeasFragment extends BaseFragment {
 
 
 
+    }
+
+    /*
+    Shows feedback text when the recyclerview has no items
+     */
+    private void setTextForEmptyState() {
+        if(!showCompleted){
+            textWhenNoActivities.setText("All Dates Completed");
+        }else{
+            textWhenNoActivities.setText("No Dates Completed");
+        }
     }
 
     private void collectAllActivities(DataSnapshot dataSnapshot) {

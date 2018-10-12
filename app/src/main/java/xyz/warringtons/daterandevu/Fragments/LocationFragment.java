@@ -63,18 +63,25 @@ public class LocationFragment extends BaseFragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
+        String location  = Randevu.getmSettings().getString("location","");
+        if(location != null | location !=""){
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            SelectedIdeasFragment fragment = new SelectedIdeasFragment();
+            ft.replace(R.id.mainContent,  fragment);
+            ft.addToBackStack(null);
+            ft.commit();
+            return;
+        }
+
         mainActivity = (MainActivity) getActivity();
         mainActivity.drawableDisable();
         locationTypes.clear();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Randevu.getContext());
         locationRV.setLayoutManager(layoutManager);
 
-
         locationTypes.add("New York");
         locationTypes.add("Florida");
         locationTypes.add("Los Angeles");
-
-
 
         LocationAdapter locationAdapter = new LocationAdapter(locationTypes, new ActivityCallBack() {
             @Override
