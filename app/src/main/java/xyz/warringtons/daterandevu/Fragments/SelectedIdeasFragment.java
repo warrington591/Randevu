@@ -407,8 +407,13 @@ public class SelectedIdeasFragment extends BaseFragment {
                 final ImageView dateImage = (ImageView) mView.findViewById(R.id.dialogIdeaImage);
 
                 dateText.setText(currentActivity.getActivityName());
-                Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(dateImage);
 
+                String  pidDatabaseId = currentActivity.getPicDatabaseId();
+                if(pidDatabaseId==null){
+                    Glide.with(Randevu.getContext()).load(R.drawable.date_idea_holder).apply(RequestOptions.circleCropTransform()).into(dateImage);
+                }else{
+                    Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(dateImage);
+                }
 
                 mBuilder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

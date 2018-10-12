@@ -64,7 +64,7 @@ public class LocationFragment extends BaseFragment {
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
 
         String location  = Randevu.getmSettings().getString("location","");
-        if(location != null | location !=""){
+        if(location != null && !location.equals("")){
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             SelectedIdeasFragment fragment = new SelectedIdeasFragment();
             ft.replace(R.id.mainContent,  fragment);

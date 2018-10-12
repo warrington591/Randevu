@@ -484,6 +484,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_reset:
                 Randevu.getDaoSession().getUserDao().deleteAll();
+                Randevu.getEditor().putString("location","");
+                Randevu.getEditor().apply();
                 intent.putExtra("navigateTo", "locationsScreen");
                 finish();
                 startActivity(intent);
