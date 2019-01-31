@@ -15,8 +15,13 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.IdpResponse;
+//import com.firebase.ui.auth.AuthUI;
+//import com.firebase.ui.auth.IdpResponse;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -46,11 +51,12 @@ import static android.app.Activity.RESULT_OK;
 
 public class WelcomeFragment extends BaseFragment {
 
-    List<AuthUI.IdpConfig> providers = Arrays.asList(
-            new AuthUI.IdpConfig.EmailBuilder().build(),
-            new AuthUI.IdpConfig.GoogleBuilder().build());
+//    List<AuthUI.IdpConfig> providers = Arrays.asList(
+//            new AuthUI.IdpConfig.EmailBuilder().build(),
+//            new AuthUI.IdpConfig.GoogleBuilder().build());
 
     private static final int RC_SIGN_IN = 123;
+    private static final String TAG = "WelcomeFragment";
 
     private FirebaseAuth auth;
 
@@ -89,12 +95,20 @@ public class WelcomeFragment extends BaseFragment {
 
     @OnClick(R.id.logIn)
     public void LogIn() {
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .build(),
-                RC_SIGN_IN);
+
+
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
+
+
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+
     }
 
     @OnClick(R.id.forgotPassword)
@@ -209,82 +223,93 @@ public class WelcomeFragment extends BaseFragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == RC_SIGN_IN) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
 
             // Successfully signed in
             if (resultCode == RESULT_OK) {
 
-                if (auth == null) {
-                    auth = FirebaseAuth.getInstance();
-                }
-
-                if (auth != null) {
-                    FirebaseUser firebaseUser = auth.getCurrentUser();
-                    String username = firebaseUser.getDisplayName();
-                    final String userId = firebaseUser.getUid();
-                    String email = firebaseUser.getEmail();
-                    final RandevuUser randevuUser = new RandevuUser(username, email);
-
-                    DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users");
-
-                    //Checks if account already exists
-                    databaseForUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            if (snapshot.exists()) {
-                                Log.d("AlreadyExists", "onDataChange: ");
-                            } else {
-                                //creates an instance of the new user
-                                mDatabaseUsers.child(userId).setValue(randevuUser);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    categoriesRef = databaseForUser.child(userId).child("categories");
-                    mDatabaseActivities = mDatabaseUsers.child(userId).child("activities");
-                    mDatabaseUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.child("activities").exists()) {
-                                Log.d("calledTag", "activities child exits");
-                            } else {
-                                Log.d("calledTag", "activities doesn't exits");
-                               setUpActivities();
-                                categoriesRef.setValue("categories");
-                                categoriesRef.push().setValue(new Category("Casual", 0));
-                                categoriesRef.push().setValue(new Category("Adventure", 0));
-                                categoriesRef.push().setValue(new Category("Home", 0));
-                                categoriesRef.push().setValue(new Category("Crafts", 0));
-                                categoriesRef.push().setValue(new Category("Fancy", 0));
-                                categoriesRef.push().setValue(new Category("Volunteering", 0));
-                                saveToLocalStorage();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    moveToLocationsFragment();
-                }
-
-                return;
-            } else {
-                // Sign in failed
-                if (response == null) {
-                    // RandevuUser pressed back button
-                    Toast.makeText(Randevu.getContext(), "Sign In Failed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
             }
+
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+
+            // Signed in successfully, show authenticated UI.
+
+            if (auth == null) {
+                auth = FirebaseAuth.getInstance();
+            }
+
+            if (auth != null) {
+                FirebaseUser firebaseUser = auth.getCurrentUser();
+                String username = account.getDisplayName();
+//                String username = firebaseUser.getDisplayName();
+                final String userId = account.getId();
+
+//                final String userId = firebaseUser.getUid();
+                String email = account.getEmail();
+                final RandevuUser randevuUser = new RandevuUser(username, email);
+
+                DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users");
+
+                //Checks if account already exists
+                databaseForUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot snapshot) {
+                        if (snapshot.exists()) {
+                            Log.d("AlreadyExists", "onDataChange: ");
+                        } else {
+                            //creates an instance of the new user
+                            mDatabaseUsers.child(userId).setValue(randevuUser);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                categoriesRef = databaseForUser.child(userId).child("categories");
+                mDatabaseActivities = mDatabaseUsers.child(userId).child("activities");
+                mDatabaseUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("activities").exists()) {
+                            Log.d("calledTag", "activities child exits");
+                        } else {
+                            Log.d("calledTag", "activities doesn't exits");
+                            setUpActivities();
+                            categoriesRef.setValue("categories");
+                            categoriesRef.push().setValue(new Category("Casual", 0));
+                            categoriesRef.push().setValue(new Category("Adventure", 0));
+                            categoriesRef.push().setValue(new Category("Home", 0));
+                            categoriesRef.push().setValue(new Category("Crafts", 0));
+                            categoriesRef.push().setValue(new Category("Fancy", 0));
+                            categoriesRef.push().setValue(new Category("Volunteering", 0));
+                            saveToLocalStorage();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+
+                moveToLocationsFragment();
+            }
+
+            return;
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            // Please refer to the GoogleSignInStatusCodes class reference for more information.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
 

@@ -69,6 +69,7 @@ public class CategoryFragment extends BaseFragment {
         activitesRV.setLayoutManager(layoutManager);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
+
         FirebaseUser firebaseUser = auth.getCurrentUser();
         if(firebaseUser!=null){
             final String userId = firebaseUser.getUid();
