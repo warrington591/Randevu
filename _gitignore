@@ -25,6 +25,10 @@ local.properties
 .idea/modules.xml
 .idea/scopes/scope_settings.xml
 .idea/vcs.xml
+.iws
+*/.idea/workspace.xml 
+*/.idea/tasks.xml
+tasks.xml
 *.iml
 
 # OS-specific files

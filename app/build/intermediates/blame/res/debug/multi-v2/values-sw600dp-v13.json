@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
+            "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-sw600dp-v13/values-sw600dp-v13.xml",
             "map": [
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/6dc3b2dfb47d0b35fd139b4f001f4de8/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.0.aar/9b6205a79f0b54e91af8614b592d9062/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/design-27.1.1.aar/ed2cbfad4181a7bba97dd2d47153a248/res/values-sw600dp-v13/values-sw600dp-v13.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/design-27.0.0.aar/f4090e54c23af5ef7333097e574f41de/res/values-sw600dp-v13/values-sw600dp-v13.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4",

@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -60,6 +61,17 @@ public class LocationFragment extends BaseFragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
+
+        String location  = Randevu.getmSettings().getString("location","");
+        if(location != null && !location.equals("")){
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            SelectedIdeasFragment fragment = new SelectedIdeasFragment();
+            ft.replace(R.id.mainContent,  fragment);
+            ft.addToBackStack(null);
+            ft.commit();
+            return;
+        }
 
         mainActivity = (MainActivity) getActivity();
         mainActivity.drawableDisable();
@@ -67,24 +79,24 @@ public class LocationFragment extends BaseFragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(Randevu.getContext());
         locationRV.setLayoutManager(layoutManager);
 
-
         locationTypes.add("New York");
         locationTypes.add("Florida");
         locationTypes.add("Los Angeles");
-
-
 
         LocationAdapter locationAdapter = new LocationAdapter(locationTypes, new ActivityCallBack() {
             @Override
             public void perform(String value) {
 
+                //Sets location in phone storage
                 Randevu.getEditor().putString("location", value);
                 Randevu.getEditor().apply();
+
 
                 WeatherHttpClient.makeRequest(value);
 
                 weather = Randevu.getDaoSession().getWeatherDao().load((long) 1);
 
+                //Changes to main fragment to choose the users categories
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 CategoryFragment fragment = new CategoryFragment();
                 ft.replace(R.id.mainContent,  fragment);

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -7,63 +8,90 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/header_cover_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="250dp"
+            android:background="#796dec"
             android:scaleType="centerCrop"
-            android:src="@drawable/navigation_header_image" />
 
-        <ImageButton
-            android:id="@+id/user_profile_photo"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_below="@+id/header_cover_image"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-60dp"
-            android:background="@drawable/profile_circular_border_imageview"
-            android:elevation="5dp"
-            android:padding="20dp"
-            android:src="@drawable/profile" />
+            />
 
-        <RelativeLayout
+
+        <android.support.v7.widget.CardView
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/header_cover_image"
-            android:background="#796dec"
-            android:elevation="4dp"
-            android:paddingBottom="24dp">
+            android:layout_height="250dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginRight="20dp"
+            android:background="#ffffff"
+            android:elevation="6dp"
+            android:paddingBottom="24dp"
+            card_view:cardCornerRadius="6dp">
 
 
-            <!--<ImageView-->
-                <!--android:id="@+id/add_friend"-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:layout_marginLeft="16dp"-->
-                <!--android:layout_marginTop="16dp"-->
-                <!--android:layout_toLeftOf="@+id/drop_down_option_menu"-->
-                <!--android:src="@drawable/ic_action_user_add" />-->
-
-            <!--<ImageView-->
-                <!--android:id="@+id/drop_down_option_menu"-->
-                <!--android:layout_width="30dp"-->
-                <!--android:layout_height="30dp"-->
-                <!--android:layout_alignParentRight="true"-->
-                <!--android:layout_marginLeft="16dp"-->
-                <!--android:layout_marginTop="16dp"-->
-                <!--android:src="@drawable/ic_action_overflow" />-->
-
-            <TextView
-                android:id="@+id/user_profile_name"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="76dp"
-                android:text="User Profile"
-                android:textColor="#fff"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:id="@+id/nameRl"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="130dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/user_profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="User Profile"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/nameRl"
+                    >
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:clickable="true"
+                            android:elevation="4dp"
+                            android:padding="20dp"
+                            android:text="Emal:" />
+
+                        <TextView
+                            android:id="@+id/userEmailTV"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:clickable="true"
+                            android:elevation="4dp"
+                            android:padding="20dp"
+                            android:text="" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+
 
             <TextView
                 android:id="@+id/user_profile_short_bio"
@@ -73,9 +101,21 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="12dp"
                 android:text=""
-                android:textColor="#fff"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp" />
-        </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+        <ImageButton
+            android:id="@+id/user_profile_photo"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/profile_circular_border_imageview"
+            android:elevation="5dp"
+            android:scaleType="centerCrop"
+            android:padding="5dp"
+            android:src="@drawable/profile" />
 
 
         <LinearLayout
@@ -84,35 +124,6 @@
             android:layout_below="@+id/profile_layout"
             android:layout_marginTop="5dp"
             android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="Emal:" />
-
-                <TextView
-                    android:id="@+id/userEmailTV"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:clickable="true"
-                    android:elevation="4dp"
-                    android:padding="20dp"
-                    android:text="" />
-
-            </LinearLayout>
-
-
 
 
 

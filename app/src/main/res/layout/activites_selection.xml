@@ -12,6 +12,19 @@
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+
+        <ProgressBar
+            android:id="@+id/categoryProgressBar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:indeterminateDrawable = "@drawable/progress_style"
+            android:visibility="visible"
+            />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/beginDating"

@@ -1,29 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/warringtonbloomfield/Documents/android_projects/DateRandevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
+            "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-watch-v20/values-watch-v20.xml",
             "map": [
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/6dc3b2dfb47d0b35fd139b4f001f4de8/res/values-watch-v20/values-watch-v20.xml",
-                    "from": {
-                        "startLines": "2,5,8",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,214,385",
-                        "endLines": "4,7,10",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "209,380,553"
-                    },
-                    "to": {
-                        "startLines": "10,13,16",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "715,874,1045",
-                        "endLines": "12,15,18",
-                        "endColumns": "12,12,12",
-                        "endOffsets": "869,1040,1213"
-                    }
-                },
-                {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-auth-15.0.1.aar/f7ff89c64687c6f4ab28b6a4822c1595/res/values-watch-v20/values.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-auth-16.0.1.aar/e6d964e8dd55138d7a0384ca11e7a951/res/values-watch-v20/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11",
                         "startColumns": "0,0,0,0,0,0,0,0",

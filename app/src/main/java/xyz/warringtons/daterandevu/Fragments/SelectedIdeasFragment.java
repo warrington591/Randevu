@@ -1,8 +1,10 @@
 package xyz.warringtons.daterandevu.Fragments;
 
+import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -10,6 +12,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,12 +24,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -38,6 +44,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.greenrobot.greendao.query.QueryBuilder;
 import org.greenrobot.greendao.query.WhereCondition;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,6 +90,12 @@ public class SelectedIdeasFragment extends BaseFragment {
     @BindView(R.id.dateIdeas)
     TextView dateIdeas;
 
+    @BindView(R.id.dateIdeasRL)
+    RelativeLayout dateIdeasRL;
+
+    @BindView(R.id.datesCompletedRL)
+    RelativeLayout datesCompletedRL;
+
     @BindView(R.id.datesCompleted)
     TextView dateCompleted;
 
@@ -91,6 +104,15 @@ public class SelectedIdeasFragment extends BaseFragment {
 
     @BindView(R.id.rightLineSeperator)
     View rightLine;
+
+    @BindView(R.id.noDatesCompleted)
+    RelativeLayout noDatesCompleted;
+
+    @BindView(R.id.selectedIdeasProgressBar)
+    ProgressBar selectedProgressBar;
+
+    @BindView(R.id.textWhenEmpty)
+    TextView textWhenNoActivities;
 
 
     private List<Activities> allActivites, firebaseActivites;
@@ -114,6 +136,8 @@ public class SelectedIdeasFragment extends BaseFragment {
     private String categoryId;
     private Boolean showCompleted= false;
     private Handler mainHandler;
+    private int amountOfActivities;
+    private DatabaseReference activitiesRef;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -125,6 +149,11 @@ public class SelectedIdeasFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        //Removes the back button in toolbar
+        android.support.v7.app.ActionBar actionbar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        actionbar.setDisplayHomeAsUpEnabled(false);
+
+        //Updates the weather in the display
         final Weather weather = Randevu.getDaoSession().getWeatherDao().load((long) 1);
         if(weather!=null){
             updateWeather(weather);
@@ -134,7 +163,7 @@ public class SelectedIdeasFragment extends BaseFragment {
         dateIdeasRV.setLayoutManager(layoutManager);
         initiateAdapter();
 
-        dateIdeas.setOnClickListener(new View.OnClickListener() {
+        dateIdeasRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 leftLine.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected_color));
@@ -145,7 +174,7 @@ public class SelectedIdeasFragment extends BaseFragment {
         });
 
 
-        dateCompleted.setOnClickListener(new View.OnClickListener() {
+        datesCompletedRL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 rightLine.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.selected_color));
@@ -311,8 +340,19 @@ public class SelectedIdeasFragment extends BaseFragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 allActivites = new ArrayList<>();
                 collectAllActivities(dataSnapshot);
-                dateIdeasRV.setAdapter(dateAdapter);
-                initSwipe();
+
+                if(amountOfActivities!=0){
+                    dateIdeasRV.setVisibility(View.VISIBLE);
+                    noDatesCompleted.setVisibility(View.GONE);
+                    dateIdeasRV.setAdapter(dateAdapter);
+                    selectedProgressBar.setVisibility(View.GONE);
+                    initSwipe();
+                }else{
+                    dateIdeasRV.setVisibility(View.GONE);
+                    noDatesCompleted.setVisibility(View.VISIBLE);
+                    selectedProgressBar.setVisibility(View.GONE);
+                    setTextForEmptyState();
+                }
             }
 
             @Override
@@ -323,6 +363,17 @@ public class SelectedIdeasFragment extends BaseFragment {
 
 
 
+    }
+
+    /*
+    Shows feedback text when the recyclerview has no items
+     */
+    private void setTextForEmptyState() {
+        if(!showCompleted){
+            textWhenNoActivities.setText("All Dates Completed");
+        }else{
+            textWhenNoActivities.setText("No Dates Completed");
+        }
     }
 
     private void collectAllActivities(DataSnapshot dataSnapshot) {
@@ -336,11 +387,53 @@ public class SelectedIdeasFragment extends BaseFragment {
             }
         }
 
-        dateAdapter = new SelectedIdeasAdapter(allActivites, new SelectedCallback() {
+        amountOfActivities = allActivites.size();
+
+        dateAdapter = new SelectedIdeasAdapter(allActivites, getActivity().getLayoutInflater(), new SelectedCallback() {
 
             @Override
             public void perform(final Activities currentActivity) {
-                setCompleteOrNot(currentActivity);
+//                setCompleteOrNot(currentActivity);
+
+                //Show detailed information
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                String userId = firebaseUser.getUid();
+                DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users").child(userId);
+                activitiesRef = databaseForUser.child("activities");
+
+                mBuilder = new AlertDialog.Builder(getActivity());
+                final View mView = getLayoutInflater(null).inflate(R.layout.date_idea_info, null);
+                final TextView dateText = (TextView) mView.findViewById(R.id.dialogIdeaText);
+                final ImageView dateImage = (ImageView) mView.findViewById(R.id.dialogIdeaImage);
+
+                dateText.setText(currentActivity.getActivityName());
+
+                String  pidDatabaseId = currentActivity.getPicDatabaseId();
+                if(pidDatabaseId==null){
+                    Glide.with(Randevu.getContext()).load(R.drawable.date_idea_holder).apply(RequestOptions.circleCropTransform()).into(dateImage);
+                }else{
+                    Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(dateImage);
+                }
+
+                mBuilder.setPositiveButton("Completed", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        activitiesRef.child(currentActivity.getFirebaseId()).child("complete").setValue(true);
+                        dialog.dismiss();
+                    }
+                });
+
+                mBuilder.setNegativeButton("No Thanks", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        activitiesRef.child(currentActivity.getFirebaseId()).child("complete").setValue(false);
+                        dialog.dismiss();
+                    }
+                });
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
+                setUpDialogStyles(dialog);
             }
 
             @Override
@@ -375,6 +468,14 @@ public class SelectedIdeasFragment extends BaseFragment {
             }
 
         });
+    }
+
+    private void setUpDialogStyles(AlertDialog dialog) {
+        Button positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negativeButton = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        positiveButton.setTextColor(Color.parseColor("#FF0B8B42"));
+        positiveButton.setPadding(5, 0, 5, 0);
     }
 
     private void setCompleteOrNot(final Activities currentActivity) {

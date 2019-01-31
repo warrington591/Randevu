@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.preference.PreferenceManager;
 
 import com.facebook.stetho.Stetho;
+import com.google.firebase.FirebaseApp;
 
 import xyz.warringtons.daterandevu.Modules.DaoMaster;
 import xyz.warringtons.daterandevu.Modules.DaoSession;

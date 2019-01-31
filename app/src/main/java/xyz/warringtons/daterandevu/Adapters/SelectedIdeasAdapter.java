@@ -1,10 +1,14 @@
 package xyz.warringtons.daterandevu.Adapters;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.support.annotation.BinderThread;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,9 +29,11 @@ import butterknife.ButterKnife;
 import xyz.warringtons.daterandevu.Interfaces.ActivityCallBack;
 import xyz.warringtons.daterandevu.Interfaces.SelectedCallback;
 import xyz.warringtons.daterandevu.Interfaces.YelpCallback;
+import xyz.warringtons.daterandevu.MainActivity;
 import xyz.warringtons.daterandevu.Modules.Activities;
 import xyz.warringtons.daterandevu.R;
 import xyz.warringtons.daterandevu.Randevu;
+import xyz.warringtons.daterandevu.Utility.RoundedCornersTransformation;
 import xyz.warringtons.daterandevu.Utility.YelpClient;
 
 /**
@@ -40,9 +46,17 @@ public class SelectedIdeasAdapter extends RecyclerView.Adapter<SelectedIdeasAdap
     List<Activities> list = new ArrayList<>();
     SelectedCallback mCallback;
 
-    public SelectedIdeasAdapter(List<Activities> list, SelectedCallback callback) {
+    public static int sCorner = 15;
+    public static int sMargin = 2;
+    public static int sBorder = 5;
+    public static String sColor = "#ffffff";
+    private AlertDialog.Builder mBuilder;
+    private LayoutInflater myInflater;
+
+    public SelectedIdeasAdapter(List<Activities> list, LayoutInflater li, SelectedCallback callback) {
         this.list = list;
         this.mCallback = callback;
+        this.myInflater = li;
     }
 
     @Override
@@ -63,14 +77,28 @@ public class SelectedIdeasAdapter extends RecyclerView.Adapter<SelectedIdeasAdap
 
 
         if(currentActivity.getPicDatabaseId()!=null && !currentActivity.getPicDatabaseId().equals("")){
-            Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(holder.dateIdeaImage);
+//            Glide.with(Randevu.getContext()).load(currentActivity.getPicDatabaseId()).apply(RequestOptions.circleCropTransform()).into(holder.dateIdeaImage);
+
+            Glide.with(Randevu.getContext())
+                    .load(currentActivity.getPicDatabaseId())
+                    .apply(RequestOptions.bitmapTransform(
+                            new RoundedCornersTransformation(Randevu.getContext(), sCorner, sMargin, sColor, sBorder)))
+                    .into(holder.dateIdeaImage);
+
         }else{
-            Glide.with(Randevu.getContext()).load(R.drawable.date_idea_holder).apply(RequestOptions.circleCropTransform()).into(holder.dateIdeaImage);
+            Glide.with(Randevu.getContext())
+                    .load(R.drawable.date_idea_holder)
+                    .apply(RequestOptions.bitmapTransform(
+                            new RoundedCornersTransformation(Randevu.getContext(), sCorner, sMargin, sColor, sBorder)))
+                    .into(holder.dateIdeaImage);
         }
 
         holder.invLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                mCallback.perform(currentActivity);
+
 //                Boolean  value= !holder.checkBox.isChecked();
 //                holder.checkBox.setChecked(value);
 //
@@ -83,6 +111,14 @@ public class SelectedIdeasAdapter extends RecyclerView.Adapter<SelectedIdeasAdap
 //                    activitySelected.setComplete(false);
 //                    Randevu.getDaoSession().getActivitiesDao().update(activitySelected);
 //                }
+
+//                Dialog dialog = new Dialog(Randevu.getContext());
+//                dialog.setCancelable(true);
+//                final View mView = myInflater.inflate(R.layout.date_idea_info, null);
+//                dialog.show();
+
+
+
             }
         });
 

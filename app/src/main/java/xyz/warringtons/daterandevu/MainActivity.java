@@ -1,5 +1,6 @@
 package xyz.warringtons.daterandevu;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.LocationListener;
@@ -18,9 +19,11 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.IdpResponse;
+//import com.firebase.ui.auth.AuthUI;
+//import com.firebase.ui.auth.ErrorCodes;
+//import com.firebase.ui.auth.IdpResponse;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +43,7 @@ import xyz.warringtons.daterandevu.Fragments.InitialScreen;
 import xyz.warringtons.daterandevu.Fragments.LocationFragment;
 import xyz.warringtons.daterandevu.Fragments.ProfileFragment;
 import xyz.warringtons.daterandevu.Fragments.SelectedIdeasFragment;
+import xyz.warringtons.daterandevu.Fragments.WelcomeFragment;
 import xyz.warringtons.daterandevu.Modules.Activities;
 import xyz.warringtons.daterandevu.Modules.ActivitiesDao;
 import xyz.warringtons.daterandevu.Modules.User;
@@ -54,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Choose an arbitrary request code value
     private static final int RC_SIGN_IN = 123;
+
+    private static final String TAG ="MainActivity";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
 
     private ActivitiesDao activitiesDao;
     private Toolbar toolbar;
@@ -72,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseActivities;
     private InitialScreen initialFragment;
 
-    List<AuthUI.IdpConfig> providers = Arrays.asList(
-            new AuthUI.IdpConfig.EmailBuilder().build(),
-            new AuthUI.IdpConfig.GoogleBuilder().build());
+//    List<AuthUI.IdpConfig> providers = Arrays.asList(
+//            new AuthUI.IdpConfig.EmailBuilder().build(),
+//            new AuthUI.IdpConfig.GoogleBuilder().build());
 
     private DatabaseReference categoriesRef;
 
@@ -109,9 +116,34 @@ public class MainActivity extends AppCompatActivity {
         if (auth.getCurrentUser() != null) {
             moveToLocationsFragment();
         } else {
-            signIn();
+
+            navigateToWelcome();
+
+//            signIn();
         }
 
+    }
+
+    public boolean isServicesOK(){
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(MainActivity.this);
+
+        if(available == ConnectionResult.SUCCESS){
+            //user can make map requests
+            return true;
+        }else if(GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(MainActivity.this, available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else{
+            Toast.makeText(this, "Make requests not allowed for you", Toast.LENGTH_SHORT).show();
+        }
+
+        return false;
+    }
+
+    private void navigateToWelcome() {
+        WelcomeFragment fragment = new WelcomeFragment();
+        fragmentTransaction.replace(R.id.mainContent, fragment);
+        fragmentTransaction.commit();
     }
 
     private void navigateToSelectionScreen() {
@@ -146,122 +178,113 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Create and launch sign-in intent
-        startActivityForResult(
-                AuthUI.getInstance()
-                        .createSignInIntentBuilder()
-                        .setAvailableProviders(providers)
-                        .build(),
-                RC_SIGN_IN);
-
 //        startActivityForResult(
 //                AuthUI.getInstance()
 //                        .createSignInIntentBuilder()
-//                        .setIsSmartLockEnabled(false)
 //                        .setAvailableProviders(providers)
-//                        .setLogo(R.mipmap.ic_launcher)
 //                        .build(),
 //                RC_SIGN_IN);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            IdpResponse response = IdpResponse.fromResultIntent(data);
-
-            // Successfully signed in
-            if (resultCode == RESULT_OK) {
-
-                if(auth== null){
-                    auth = FirebaseAuth.getInstance();
-                }
-
-                if(auth!=null){
-                    FirebaseUser firebaseUser = auth.getCurrentUser();
-                    String username = firebaseUser.getDisplayName();
-                    final String userId = firebaseUser.getUid();
-                    String email = firebaseUser.getEmail();
-                    final RandevuUser randevuUser = new RandevuUser(username, email);
-
-                    DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users");
-
-                    //Checks if account already exists
-                    databaseForUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot snapshot) {
-                            if(snapshot.exists()){
-                                Log.d("AlreadyExists", "onDataChange: ");
-                            }else{
-                                //creates an instance of the new user
-                                mDatabaseUsers.child(userId).setValue(randevuUser);
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    categoriesRef = databaseForUser.child(userId).child("categories");
-                    mDatabaseActivities = mDatabaseUsers.child(userId).child("activities");
-                    mDatabaseUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if (dataSnapshot.child("activities").exists()) {
-                                Log.d("calledTag", "activities child exits");
-                            }else {
-                                Log.d("calledTag", "activities doesn't exits");
-                                setUpActivities();
-                                categoriesRef.setValue("categories");
-                                categoriesRef.push().setValue(new Category("Casual", 0));
-                                categoriesRef.push().setValue(new Category("Adventure", 0));
-                                categoriesRef.push().setValue(new Category("Home", 0));
-                                categoriesRef.push().setValue(new Category("Crafts", 0));
-                                categoriesRef.push().setValue(new Category("Fancy", 0));
-                                categoriesRef.push().setValue(new Category("Volunteering", 0));
-                                Randevu.getEditor().putString("location","");
-                                Randevu.getEditor().putBoolean("Casual",false);
-                                Randevu.getEditor().putBoolean("Adventure", false);
-                                Randevu.getEditor().putBoolean("Home", false);
-                                Randevu.getEditor().putBoolean("Crafts", false);
-                                Randevu.getEditor().putBoolean("Fancy", false);
-                                Randevu.getEditor().putBoolean("Volunteering", false);
-                                Randevu.getEditor().apply();
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    moveToLocationsFragment();
-                }
-
-                return;
-            } else {
-                // Sign in failed
-                if (response == null) {
-                    // RandevuUser pressed back button
-                    Toast.makeText(Randevu.getContext(), "Sign In Failed", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-//                if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
-//                    Toast.makeText(Randevu.getContext(), "No internet connection", Toast.LENGTH_SHORT).show();
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == RC_SIGN_IN) {
+//            IdpResponse response = IdpResponse.fromResultIntent(data);
+//
+//            // Successfully signed in
+//            if (resultCode == RESULT_OK) {
+//
+//                if(auth== null){
+//                    auth = FirebaseAuth.getInstance();
+//                }
+//
+//                if(auth!=null){
+//                    FirebaseUser firebaseUser = auth.getCurrentUser();
+//                    String username = firebaseUser.getDisplayName();
+//                    final String userId = firebaseUser.getUid();
+//                    String email = firebaseUser.getEmail();
+//                    final RandevuUser randevuUser = new RandevuUser(username, email);
+//
+//                    DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users");
+//
+//                    //Checks if account already exists
+//                    databaseForUser.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot snapshot) {
+//                            if(snapshot.exists()){
+//                                Log.d("AlreadyExists", "onDataChange: ");
+//                            }else{
+//                                //creates an instance of the new user
+//                                mDatabaseUsers.child(userId).setValue(randevuUser);
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//
+//                    categoriesRef = databaseForUser.child(userId).child("categories");
+//                    mDatabaseActivities = mDatabaseUsers.child(userId).child("activities");
+//                    mDatabaseUsers.child(userId).addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(DataSnapshot dataSnapshot) {
+//                            if (dataSnapshot.child("activities").exists()) {
+//                                Log.d("calledTag", "activities child exits");
+//                            }else {
+//                                Log.d("calledTag", "activities doesn't exits");
+//                                setUpActivities();
+//                                categoriesRef.setValue("categories");
+//                                categoriesRef.push().setValue(new Category("Casual", 0));
+//                                categoriesRef.push().setValue(new Category("Adventure", 0));
+//                                categoriesRef.push().setValue(new Category("Home", 0));
+//                                categoriesRef.push().setValue(new Category("Crafts", 0));
+//                                categoriesRef.push().setValue(new Category("Fancy", 0));
+//                                categoriesRef.push().setValue(new Category("Volunteering", 0));
+//                                Randevu.getEditor().putString("location","");
+//                                Randevu.getEditor().putBoolean("Casual",false);
+//                                Randevu.getEditor().putBoolean("Adventure", false);
+//                                Randevu.getEditor().putBoolean("Home", false);
+//                                Randevu.getEditor().putBoolean("Crafts", false);
+//                                Randevu.getEditor().putBoolean("Fancy", false);
+//                                Randevu.getEditor().putBoolean("Volunteering", false);
+//                                Randevu.getEditor().apply();
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(DatabaseError databaseError) {
+//
+//                        }
+//                    });
+//
+//                    moveToLocationsFragment();
+//                }
+//
+//                return;
+//            } else {
+//                // Sign in failed
+//                if (response == null) {
+//                    // RandevuUser pressed back button
+//                    Toast.makeText(Randevu.getContext(), "Sign In Failed", Toast.LENGTH_SHORT).show();
 //                    return;
 //                }
 //
-//                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
-//                    Toast.makeText(Randevu.getContext(), "Unknown error", Toast.LENGTH_SHORT).show();
-//                    return;
-//                }
-            }
-        }
-    }
+////                if (response.getErrorCode() == ErrorCodes.NO_NETWORK) {
+////                    Toast.makeText(Randevu.getContext(), "No internet connection", Toast.LENGTH_SHORT).show();
+////                    return;
+////                }
+////
+////                if (response.getErrorCode() == ErrorCodes.UNKNOWN_ERROR) {
+////                    Toast.makeText(Randevu.getContext(), "Unknown error", Toast.LENGTH_SHORT).show();
+////                    return;
+////                }
+//            }
+//        }
+//    }
 
 
     private void moveToLocationsFragment() {
@@ -474,19 +497,27 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.action_reset:
                 Randevu.getDaoSession().getUserDao().deleteAll();
+                Randevu.getEditor().putString("location","");
+                Randevu.getEditor().apply();
                 intent.putExtra("navigateTo", "locationsScreen");
                 finish();
                 startActivity(intent);
                 break;
 
             case R.id.action_sign_out:
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            public void onComplete(@NonNull Task<Void> task) {
-                                signIn();
-                            }
-                        });
+
+                FirebaseAuth.getInstance().signOut();
+                finish();
+                startActivity(intent);
+//                AuthUI.getInstance()
+//                        .signOut(this)
+//                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+//                            public void onComplete(@NonNull Task<Void> task) {
+//                                Intent intent = getIntent();
+//                                finish();
+//                                startActivity(intent);
+//                            }
+//                        });
 
             case android.R.id.home:
                 onBackPressed();
