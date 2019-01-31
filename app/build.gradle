@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao' // apply plugin
-
+apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 27
@@ -71,14 +71,6 @@ dependencies {
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-places:16.0.0'
     implementation 'com.google.android.gms:play-services-nearby:16.0.0'
-
-
-    //Firebase
-
-//    compile "com.firebaseui:firebase-ui:0.4.4"
-//    compile 'com.firebaseui:firebase-ui-auth:3.1.0'
-
-//    implementation 'com.google.firebase:firebase-auth:16.0.1:15.0.0'
 
     implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation 'com.google.firebase:firebase-auth:16.0.4'

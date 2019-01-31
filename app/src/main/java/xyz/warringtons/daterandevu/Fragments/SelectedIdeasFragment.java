@@ -1,6 +1,5 @@
 package xyz.warringtons.daterandevu.Fragments;
 
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
@@ -13,7 +12,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
@@ -22,11 +20,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,12 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-
-import org.greenrobot.greendao.query.QueryBuilder;
-import org.greenrobot.greendao.query.WhereCondition;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,19 +42,15 @@ import java.util.Random;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import xyz.warringtons.daterandevu.Adapters.DateIdeasAdapter;
 import xyz.warringtons.daterandevu.Adapters.SelectedIdeasAdapter;
 import xyz.warringtons.daterandevu.Adapters.YelpBusinessAdapter;
-import xyz.warringtons.daterandevu.Interfaces.ActivityCallBack;
 import xyz.warringtons.daterandevu.Interfaces.SelectedCallback;
 import xyz.warringtons.daterandevu.Modules.Activities;
-import xyz.warringtons.daterandevu.Modules.ActivitiesDao;
 import xyz.warringtons.daterandevu.Modules.Weather;
 import xyz.warringtons.daterandevu.Modules.YelpBusinesses;
 import xyz.warringtons.daterandevu.R;
 import xyz.warringtons.daterandevu.Randevu;
 
-import static android.R.attr.handle;
 
 /**
  * Created by Warrington on 8/12/17.
