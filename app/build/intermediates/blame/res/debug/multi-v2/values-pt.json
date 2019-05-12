@@ -4,7 +4,7 @@
             "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
             "map": [
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.0.aar/9b6205a79f0b54e91af8614b592d9062/res/values-pt/values-pt.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/d9a585d4355ca5803361f7c0ab11165c/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/c9f433091d3fb8b837e2e0cc936f8ed5/res/values-pt/values-pt.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/bea140bd4c4ddda3b95797f78e4062f8/res/values-pt/values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

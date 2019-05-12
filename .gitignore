@@ -2,3 +2,4 @@ app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/xyz/warrin
 app/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/xyz/warringtons/daterandevu/Fragments/WelcomeFragment$1$2.class
 app/build/intermediates/transforms/dexBuilder/debug/69/xyz/warringtons/daterandevu/Fragments/WelcomeFragment$1$1.dex
 app/build/intermediates/transforms/dexBuilder/debug/69/xyz/warringtons/daterandevu/Fragments/WelcomeFragment$1$2.dex
+.idea/*

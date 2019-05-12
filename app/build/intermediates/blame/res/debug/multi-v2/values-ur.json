@@ -4,41 +4,7 @@
             "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ur/values-ur.xml",
             "map": [
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-places-16.0.0.aar/65ece9a8dc57295ee424eba0eba11b76/res/values-ur/values.xml",
-                    "from": {
-                        "startLines": "4,5",
-                        "startColumns": "0,0",
-                        "startOffsets": "193,293",
-                        "endColumns": "99,89",
-                        "endOffsets": "292,382"
-                    },
-                    "to": {
-                        "startLines": "37,38",
-                        "startColumns": "4,4",
-                        "startOffsets": "4606,4710",
-                        "endColumns": "103,93",
-                        "endOffsets": "4705,4799"
-                    }
-                },
-                {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-basement-16.0.1.aar/51dd2c5504bb6b2b6ed0d508aba799c7/res/values-ur/values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "247",
-                        "endColumns": "210",
-                        "endOffsets": "457"
-                    },
-                    "to": {
-                        "startLines": "27",
-                        "startColumns": "4",
-                        "startOffsets": "3028",
-                        "endColumns": "210",
-                        "endOffsets": "3234"
-                    }
-                },
-                {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/support-compat-27.0.2.aar/c9f433091d3fb8b837e2e0cc936f8ed5/res/values-ur/values-ur.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/bea140bd4c4ddda3b95797f78e4062f8/res/values-ur/values-ur.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.0.aar/9b6205a79f0b54e91af8614b592d9062/res/values-ur/values-ur.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/d9a585d4355ca5803361f7c0ab11165c/res/values-ur/values-ur.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -72,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/play-services-base-16.0.1.aar/1d1b3e86490a5bd214494a9536966c80/res/values-ur/values.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/c6b1d0f14ec38aee7152572f7b8244bd/res/values-ur/values.xml",
+                    "from": {
+                        "startLines": "4,5",
+                        "startColumns": "0,0",
+                        "startOffsets": "193,293",
+                        "endColumns": "99,89",
+                        "endOffsets": "292,382"
+                    },
+                    "to": {
+                        "startLines": "37,38",
+                        "startColumns": "4,4",
+                        "startOffsets": "4606,4710",
+                        "endColumns": "103,93",
+                        "endOffsets": "4705,4799"
+                    }
+                },
+                {
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/fefd12df353e040d59b47a0b9ea2853e/res/values-ur/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -86,6 +69,23 @@
                         "startOffsets": "1878,1988,2184,2312,2425,2624,2753,2895,3239,3450,3562,3765,3895,4100,4299,4392,4489",
                         "endColumns": "109,195,127,112,198,128,141,132,210,111,202,129,204,198,92,96,116",
                         "endOffsets": "1983,2179,2307,2420,2619,2748,2890,3023,3445,3557,3760,3890,4095,4294,4387,4484,4601"
+                    }
+                },
+                {
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/a9afa12ea114b69142768abfef82889a/res/values-ur/values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "247",
+                        "endColumns": "210",
+                        "endOffsets": "457"
+                    },
+                    "to": {
+                        "startLines": "27",
+                        "startColumns": "4",
+                        "startOffsets": "3028",
+                        "endColumns": "210",
+                        "endOffsets": "3234"
                     }
                 }
             ]

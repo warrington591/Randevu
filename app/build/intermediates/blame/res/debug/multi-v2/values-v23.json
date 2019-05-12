@@ -4,7 +4,7 @@
             "outputFile": "/Users/warringtonbloomfield/Randevu/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v23/values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/cardview-v7-27.0.0.aar/5d48de2af7e02d0c3667c5a07e32818a/res/values-v23/values-v23.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/574f240f07f27d38a63db5c55d99ea4d/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -23,7 +23,7 @@
                     }
                 },
                 {
-                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.0.0.aar/9b6205a79f0b54e91af8614b592d9062/res/values-v23/values-v23.xml",
+                    "source": "/Users/warringtonbloomfield/.gradle/caches/transforms-2/files-2.1/d9a585d4355ca5803361f7c0ab11165c/res/values-v23/values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,19,32,33,34,35,36",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4",

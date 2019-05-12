@@ -72,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
     private UserDao userDao;
     public int PERMISSION_ACCESS_COARSE_LOCATION = 123;
 
-    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
-    DatabaseReference conditionRef = mDatabase.child("condition");
-    DatabaseReference mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
+//    DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+//    DatabaseReference conditionRef = mDatabase.child("condition");
+//    DatabaseReference mDatabaseUsers = FirebaseDatabase.getInstance().getReference("users");
     private FirebaseAuth auth;
     private DatabaseReference mDatabaseActivities;
     private InitialScreen initialFragment;
@@ -108,19 +108,19 @@ public class MainActivity extends AppCompatActivity {
             navigateToProfileScreen();
             return;
         }
-        activitiesDao = Randevu.getDaoSession().getActivitiesDao();
-        userDao = Randevu.getDaoSession().getUserDao();
-        currentUser = Randevu.getDaoSession().getUserDao().queryBuilder().where(UserDao.Properties.Id.eq(1)).build().unique();
+//        activitiesDao = Randevu.getDaoSession().getActivitiesDao();
+//        userDao = Randevu.getDaoSession().getUserDao();
+//        currentUser = Randevu.getDaoSession().getUserDao().queryBuilder().where(UserDao.Properties.Id.eq(1)).build().unique();
 
-        auth = FirebaseAuth.getInstance();
-        if (auth.getCurrentUser() != null) {
-            moveToLocationsFragment();
-        } else {
-
-            navigateToWelcome();
+//        auth = FirebaseAuth.getInstance();
+//        if (auth.getCurrentUser() != null) {
+//            moveToLocationsFragment();
+//        } else {
+//
+//            navigateToWelcome();
 
 //            signIn();
-        }
+        //}
 
     }
 
@@ -161,17 +161,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        conditionRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+//        conditionRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
     }
 
     private void signIn() {
