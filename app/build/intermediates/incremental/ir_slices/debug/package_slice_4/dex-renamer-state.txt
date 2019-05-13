@@ -1,4 +1,4 @@
-#Sun May 12 15:56:09 EDT 2019
+#Sun May 12 19:59:41 EDT 2019
 base.0=/Users/warringtonbloomfield/Randevu/app/build/intermediates/transforms/dexMerger/debug/4
 path.0=classes.dex
 renamed.0=classes.dex

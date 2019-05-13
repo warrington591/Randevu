@@ -15,19 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "408686863546-1rg1q3cpjak6ul379uk6t8d0qm2m2m4l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "xyz.warringtons.daterandevu",
-            "certificate_hash": "93ddeb0105eb667fed6f3e476fed38052d906309"
-          }
-        },
-        {
           "client_id": "408686863546-03umm0oj7ju8jf7jl00ap49ps2dtobui.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "xyz.warringtons.daterandevu",
             "certificate_hash": "0441e57ffacdb7dcdec5f32c711ceec049156965"
+          }
+        },
+        {
+          "client_id": "408686863546-1rg1q3cpjak6ul379uk6t8d0qm2m2m4l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xyz.warringtons.daterandevu",
+            "certificate_hash": "93ddeb0105eb667fed6f3e476fed38052d906309"
           }
         },
         {
@@ -41,20 +41,13 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "408686863546-iqd5qo45gpu61rnpfdah45rruqqp4tia.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

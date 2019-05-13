@@ -31,8 +31,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 
 import org.greenrobot.greendao.query.WhereCondition;
 
@@ -139,8 +139,6 @@ public class DateGeneratorFragment extends BaseFragment {
 
         FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
         String userId = firebaseUser.getUid();
-        DatabaseReference databaseForUser = FirebaseDatabase.getInstance().getReference("users").child(userId);
-        DatabaseReference activitiesRef = databaseForUser.child("activities");
 
         Activities activity = new Activities();
 
@@ -181,7 +179,7 @@ public class DateGeneratorFragment extends BaseFragment {
             activity.setComplete(false);
             activity.setSelected(false);
             activity.setDeleted(false);
-            activitiesRef.push().setValue(activity); // Sends activity to server
+//            activitiesRef.push().setValue(activity); // Sends activity to server
             dialog.dismiss();
         }
     }
